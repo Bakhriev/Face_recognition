@@ -8,8 +8,6 @@ count = 0
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt2.xml')
 # Check if the webcam is opened correctly
 cap = cv2.VideoCapture(0)
-if not cap.isOpened():
-	raise IOError("Cannot open webcam")
 
 if not os.path.exists('skrin'):
 	os.mkdir('./skrin')
