@@ -14,7 +14,7 @@ cap = cv2.VideoCapture(0)
 if not os.path.exists(full_pathname):
 	os.mkdir(full_pathname)
 
-while cap.isOpened():
+while True:
 	ret, frame = cap.read()
 	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 	faces = face_cascade.detectMultiScale(gray, 1.1, 4)
