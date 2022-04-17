@@ -1,18 +1,17 @@
 from datetime import datetime
 import cv2
 import os
-
-filename1 = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+pathname = datetime.now().strftime('%Y-%m-%d')
+filename = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+full_pathname = f'skrin/{pathname}'
 count = 0
 # cap = cv2.VideoCapture('rtsp://admin:123456789q@192.168.72.70:554/cam/realmonitor?channel=1&subtype=0')
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt2.xml')
 # Check if the webcam is opened correctly
 cap = cv2.VideoCapture(0)
-if not cap.isOpened():
-	raise IOError("Cannot open webcam")
 
-if not os.path.exists('skrin'):
-	os.mkdir('./skrin')
+if not os.path.exists(full_pathname):
+	os.mkdir(full_pathname)
 
 while cap.isOpened():
 	ret, frame = cap.read()
@@ -30,8 +29,8 @@ while cap.isOpened():
 		if faces in faces:
 			if frame_id % multiplier == 0:
 				cv2.resize(frame, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
-				cv2.imwrite(f"skrin/{filename1,  count}.jpg", frame)
-				print(f"Saved {filename1, count}")
+				cv2.imwrite(f"{full_pathname}/{filename, count}.jpg", frame)
+				print(f"Saved {filename, count}")
 				count += 1
 			else:
 				print('no face')
