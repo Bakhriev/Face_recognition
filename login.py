@@ -116,7 +116,6 @@ class MainWindow(object):
         self.ui = Register()
         self.ui.setupUi(self.window2)
         self.window2.show()
-        Form.hide()
 
 
 
