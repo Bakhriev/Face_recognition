@@ -1,7 +1,7 @@
 import sys
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QApplication
-from sign import Register
+from sign_in import Register
 
 
 class MainWindow(object):
