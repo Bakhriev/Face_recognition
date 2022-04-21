@@ -1,4 +1,4 @@
-import sys
+from sys import exit, argv
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QApplication
 from sign_in import Register
@@ -8,6 +8,7 @@ class MainWindow(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(370, 377)
+        Form.setFixedSize(370, 377)
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
         font.setPointSize(14)
@@ -16,16 +17,37 @@ class MainWindow(object):
         font.setWeight(7)
         Form.setFont(font)
         Form.setStyleSheet("QWidget{\n"
-                           "background-color: rgb(86, 86, 86);\n"
+                           "background-color: rgba(86, 86, 86);\n"
                            "    font: 63 14pt \"MS Shell Dlg 2\";\n"
                            "}\n"
+
                            "QLineEdit{\n"
-                           "background-color: rgb(121, 167, 177);\n"
-                           "border-radius:15px;\n"
+                           "background-color: rgb(0, 0, 0, 0);\n"
+                           "border: none;\n"
+
+                           "border-bottom:2px solid rgba(105, 118, 132, 255);\n"
+                           "color: rgba(255,255,255,230);\n"
+                           "padding-bottom: 7px;\n"
                            "}\n"
+
                            "QPushButton{\n"
                            "background-color: rgb(121, 167, 177);\n"
+                           "border-radius: 5px;"
                            "}\n"
+
+                           "QPushButton:hover{\n"
+                           "background-color: rgb(52, 164, 235);\n"
+                           "padding-left: 1px;"
+                           "padding-top: 1px;"
+                           "}\n"
+
+                           "QPushButton:pressed{\n"
+                           "background-color: rgb(52, 143, 235);\n"
+                           "border-radius: 5px;"
+                           "padding-left: 5px;"
+                           "padding-top: 5px;"
+                           "}\n"
+
                            "QLabel{\n"
                            "color: rgb(255, 255, 255);\n"
                            "}")
@@ -43,12 +65,7 @@ class MainWindow(object):
         self.label.setObjectName("label")
         self.lineEdit = QLineEdit(Form)
         self.lineEdit.setGeometry(QtCore.QRect(49, 110, 261, 30))
-        font = QtGui.QFont()
-        font.setFamily("MS Shell Dlg 2")
-        font.setPointSize(14)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setWeight(7)
+
         self.lineEdit.setFont(font)
         self.lineEdit.setStatusTip("")
         self.lineEdit.setWhatsThis("")
@@ -61,24 +78,13 @@ class MainWindow(object):
         self.lineEdit.setObjectName("lineEdit")
         self.lineEdit_2 = QLineEdit(Form)
         self.lineEdit_2.setGeometry(QtCore.QRect(49, 190, 261, 30))
-        font = QtGui.QFont()
-        font.setFamily("MS Shell Dlg 2")
-        font.setPointSize(14)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setWeight(7)
+
         self.lineEdit_2.setFont(font)
         self.lineEdit_2.setInputMethodHints(
             QtCore.Qt.ImhHiddenText | QtCore.Qt.ImhNoAutoUppercase | QtCore.Qt.ImhNoPredictiveText | QtCore.Qt.ImhSensitiveData)
         self.lineEdit_2.setMaxLength(22)
         self.lineEdit_2.setEchoMode(QLineEdit.Password)
         self.lineEdit_2.setObjectName("lineEdit_2")
-        self.label_2 = QLabel(Form)
-        self.label_2.setGeometry(QtCore.QRect(50, 75, 131, 21))
-        self.label_2.setObjectName("label_2")
-        self.label_3 = QLabel(Form)
-        self.label_3.setGeometry(QtCore.QRect(50, 156, 131, 20))
-        self.label_3.setObjectName("label_3")
         self.pushButton_2 = QPushButton(Form)
         self.pushButton_2.setGeometry(QtCore.QRect(200, 260, 111, 41))
         self.pushButton_2.setStyleSheet("")
@@ -99,17 +105,13 @@ class MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.label.setText(_translate("Form", "Log In"))
-        self.lineEdit.setPlaceholderText(_translate("Form", "Username"))
-        self.lineEdit_2.setPlaceholderText(_translate("Form", "Password"))
-        self.label_2.setText(_translate("Form", "Username"))
-        self.label_3.setText(_translate("Form", "Password"))
-        self.pushButton_2.setText(_translate("Form", "Register"))
-        self.pushButton.setText(_translate("Form", "Log in"))
+        self.lineEdit.setPlaceholderText(_translate("Form", " Username"))
+        self.lineEdit_2.setPlaceholderText(_translate("Form", " Password"))
+        self.pushButton_2.setText(_translate("Form", "Sign up"))
+        self.pushButton.setText(_translate("Form", "Sign in"))
 
     def btn_login_clicked(self):
         pass
-
-
 
     def show_window_2(self):
         self.window2 = QWidget()
@@ -118,11 +120,10 @@ class MainWindow(object):
         self.window2.show()
 
 
-
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
+    app = QApplication(argv)
     Form = QWidget()
     ui = MainWindow()
     ui.setupUi(Form)
     Form.show()
-    sys.exit(app.exec_())
+    exit(app.exec_())
