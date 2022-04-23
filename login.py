@@ -1,7 +1,7 @@
 from sys import exit, argv
-import sqlite3
 from PyQt5 import QtCore, QtGui
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QApplication, QMessageBox
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QApplication
+from PyQt5.QtGui import QIcon
 from sign_up import Register
 
 
@@ -10,6 +10,7 @@ class MainWindow(object):
         Form.setObjectName("Form")
         Form.resize(370, 377)
         Form.setFixedSize(370, 377)
+        Form.setWindowIcon(QIcon('mac-logo.png'))
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
         font.setPointSize(14)
@@ -19,7 +20,7 @@ class MainWindow(object):
         Form.setFont(font)
         Form.setStyleSheet("QWidget{\n"
                            "background-color: rgba(86, 86, 86);\n"
-                           "    font: 63 14pt \"MS Shell Dlg 2\";\n"
+                           "font: 63 14pt \"MS Shell Dlg 2\";\n"
                            "}\n"
 
                            "QLineEdit{\n"
@@ -33,7 +34,8 @@ class MainWindow(object):
 
                            "QPushButton{\n"
                            "background-color: rgb(121, 167, 177);\n"
-                           "border-radius: 5px;"
+                           "border-radius: 5px;\n"
+                           "transition: 1s;\n"
                            "}\n"
 
                            "QPushButton:hover{\n"
@@ -94,6 +96,7 @@ class MainWindow(object):
         self.pushButton.setGeometry(QtCore.QRect(60, 260, 111, 41))
         self.pushButton.setStyleSheet("")
         self.pushButton.setObjectName("pushButton")
+
 
         # connect buttons
         self.pushButton.clicked.connect(self.btn_login_clicked)

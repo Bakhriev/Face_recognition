@@ -1,6 +1,7 @@
 import sys
 import sqlite3
 from PyQt5 import QtCore, QtGui, QtSql
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QLineEdit, QWidget, QPushButton, QLabel, QApplication, QMessageBox
 
 
@@ -22,6 +23,7 @@ class Register(object):
         Form.resize(370, 377)
         Form.move(890,210)
         Form.setFixedSize(370, 377)
+        Form.setWindowIcon(QIcon('mac-logo.png'))
         Form.setStyleSheet("QWidget{\n"
                            "background-color: rgb(80, 93, 112);\n"
                            "font: 63 14pt \"MS Shell Dlg 2\";\n"
