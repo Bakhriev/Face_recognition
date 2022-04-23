@@ -1,7 +1,8 @@
 from sys import exit, argv
+import sqlite3
 from PyQt5 import QtCore, QtGui
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QApplication
-from sign_in import Register
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QApplication, QMessageBox
+from sign_up import Register
 
 
 class MainWindow(object):
