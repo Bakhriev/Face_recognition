@@ -2,6 +2,8 @@ import sys
 import sqlite3
 from PyQt5 import QtCore, QtGui, QtSql
 from PyQt5.QtWidgets import QLineEdit, QWidget, QPushButton, QLabel, QApplication
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QLineEdit, QWidget, QPushButton, QLabel, QApplication, QMessageBox
 
 
 class Register(object):
@@ -23,9 +25,11 @@ class Register(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(370, 377)
+        Form.move(890,210)
         Form.setFixedSize(370, 377)
+        Form.setWindowIcon(QIcon('mac-logo.png'))
         Form.setStyleSheet("QWidget{\n"
-                           "background-color: rgb(86, 86, 86);\n"
+                           "background-color: rgb(80, 93, 112);\n"
                            "font: 63 14pt \"MS Shell Dlg 2\";\n"
                            "}\n"
 
@@ -38,7 +42,7 @@ class Register(object):
                            "}\n"
 
                            "QPushButton{\n"
-                           "background-color: rgb(121, 167, 177);\n"
+                           "background-color: rgb(125, 177, 232);\n"
                            "border-radius: 5px;"
                            "}\n"
 
@@ -111,18 +115,36 @@ class Register(object):
         self.pushButton_2.setText(_translate("Form", "Sign up"))
         self.label.setText(_translate("Form", "Sign up"))
 
+    def showMessageBox(self, title, message):
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Warning)
+        msgBox.setWindowTitle(title)
+        msgBox.setText(message)
+        msgBox.setStandardButtons(QMessageBox.Ok)
+        msgBox.exec_()
+
+    def valid_user_data(self, name, password):
+        if name is None or password is None:
+            self.showMessageBox('Внимание', 'не заполнены поля')
+            return False
+        if len(name) < 3 or len(password) < 3:
+            self.showMessageBox('Внимание', 'в логине и пароле должно быть больше 3 символов')
+            return False
+        return True
+
     def add_user(self):
         name = self.lineEdit.text()
         password = self.lineEdit_2.text()
-        try:
-            with sqlite3.connect('users.db') as db:
-                cur = db.cursor()
-                data = (name, password)
-                cur.execute("INSERT INTO users ('name', 'password') VALUES (?, ?)", (name, password))
-                db.commit()
-                print('успешно добавлено в базу!')
-        except Exception as exc:
-            print(exc)
+        if self.valid_user_data(name, password):
+            try:
+                with sqlite3.connect('users.db') as db:
+                    cur = db.cursor()
+                    data = (name, password)
+                    cur.execute("INSERT INTO users ('name', 'password') VALUES (?, ?)", (name, password))
+                    db.commit()
+                    print('успешно добавлено в базу!')
+            except Exception as exc:
+                print(exc)
 
 
 if __name__ == "__main__":
